@@ -1,0 +1,72 @@
+<!-- author:; date:; tags: tablas-hash, colisiones -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Manejo de Colisiones</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Manejo de Colisiones en Tablas Hash</h1>
+    <nav>
+      <a href="../index.html">Inicio</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section>
+      <h2>Introducción</h2>
+      <p>Cuando dos claves mapean al mismo índice ocurre una colisión. Las dos estrategias principales son <strong>encadenamiento</strong> (chaining) y <strong>direccionamiento abierto</strong> (open addressing).</p>
+    </section>
+
+    <section>
+      <h2>1. Encadenamiento (Chaining)</h2>
+      <p>Cada posición del arreglo mantiene una lista (o vector) de pares clave–valor. Al ocurrir una colisión se agrega el nuevo elemento a la lista.</p>
+      <pre><code>// pseudocódigo (insert)
+index = hash(key) % capacity
+list = buckets[index]
+list.append((key,value))
+      </code></pre>
+
+      <div class="svg-wrap" style="margin-top:10px">
+        <svg width="100%" height="120" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="80" height="30" fill="#fff" stroke="#cbd5e1"/>
+          <text x="20" y="30">Bucket 0</text>
+          <line x1="90" y1="25" x2="160" y2="25" stroke="#2b6cb0"/>
+          <rect x="160" y="10" width="120" height="30" fill="#fff" stroke="#cbd5e1"/>
+          <text x="170" y="30">(k1,v1) -> (k2,v2)</text>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. Direccionamiento Abierto (Open Addressing)</h2>
+      <p>Los elementos se almacenan directamente en el arreglo; si hay colisión se busca otra celda libre según una secuencia (probe sequence).</p>
+      <p>Métodos comunes: <em>linear probing</em>, <em>quadratic probing</em>, <em>double hashing</em>.</p>
+
+      <pre><code>// linear probing (insert)
+index = hash(key) % capacity
+while table[index] is occupied:
+  index = (index + 1) % capacity
+table[index] = (key,value)
+      </code></pre>
+
+      <div class="svg-wrap" style="margin-top:10px">
+        <svg width="100%" height="120" viewBox="0 0 600 120" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(10,10)">
+            <rect x="0" y="0" width="60" height="30" fill="#fff" stroke="#cbd5e1"/>
+            <rect x="62" y="0" width="60" height="30" fill="#fff" stroke="#cbd5e1"/>
+            <rect x="124" y="0" width="60" height="30" fill="#fff" stroke="#cbd5e1"/>
+            <text x="6" y="20">A</text>
+            <text x="68" y="20">B</text>
+            <text x="130" y="20">(k3,v3)</text>
+            <text x="0" y="50">Linear probing: si B ocupado, prueba siguiente celda.</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

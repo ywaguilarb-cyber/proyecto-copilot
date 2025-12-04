@@ -1,0 +1,70 @@
+<!-- author:; date:; tags: tablas-hash, implementacion -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Implementación y Operaciones</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Implementación y Operaciones Fundamentales</h1>
+    <nav>
+      <a href="../index.html">Inicio</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section>
+      <h2>Operación: Insertar (put)</h2>
+      <p>Paso básico: calcular hash, obtener índice y almacenar allí (o en la estructura de colisión correspondiente).</p>
+      <pre><code>// put pseudo (chaining)
+index = hash(key) % capacity
+if buckets[index] contains key: update value
+else: buckets[index].append((key,value))
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Operación: Buscar (get)</h2>
+      <pre><code>// get pseudo (chaining)
+index = hash(key) % capacity
+for (k,v) in buckets[index]:
+  if k == key: return v
+return null
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Operación: Eliminar (delete)</h2>
+      <p>En chaining: quitar el nodo de la lista. En open addressing: marcar la celda como "deleted" (tombstone) para preservar la secuencia de sondeo.</p>
+      <pre><code>// delete pseudo (open addressing)
+index = hash(key) % capacity
+while table[index] not empty:
+  if table[index].key == key:
+    table[index].markDeleted()
+    return
+  index = (index + 1) % capacity
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Ejemplo visual: Insertar -> Buscar -> Eliminar</h2>
+      <div class="svg-wrap">
+        <svg width="100%" height="160" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="18">Insert: key1 -> index 2</text>
+          <rect x="10" y="30" width="80" height="30" fill="#fff" stroke="#cbd5e1"/>
+          <rect x="92" y="30" width="80" height="30" fill="#fff" stroke="#cbd5e1"/>
+          <rect x="174" y="30" width="80" height="30" fill="#fff" stroke="#cbd5e1"/>
+          <text x="190" y="50">(key1,v1)</text>
+
+          <text x="10" y="90">Delete: mark tombstone at index 2</text>
+          <rect x="174" y="80" width="80" height="30" fill="#ffecec" stroke="#f4b5b5"/>
+          <text x="190" y="100">deleted</text>
+        </svg>
+      </div>
+    </section>
+  </main>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

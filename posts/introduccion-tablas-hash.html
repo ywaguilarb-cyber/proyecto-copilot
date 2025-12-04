@@ -1,0 +1,74 @@
+<!-- author:; date:; tags: tablas-hash, introduccion -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Introducción a las Tablas Hash</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Introducción a las Tablas Hash</h1>
+    <nav>
+      <a href="../index.html">Inicio</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>¿Qué es una Tabla Hash?</h2>
+      <p>Una tabla hash (hash table) es una estructura de datos que asocia claves (keys) a valores (values) usando una <strong>función hash</strong> que mapea la clave a un índice del arreglo subyacente.</p>
+      <ul>
+        <li><strong>Clave (key):</strong> identificador único.</li>
+        <li><strong>Valor (value):</strong> datos asociados a la clave.</li>
+        <li><strong>Función hash:</strong> transforma la clave en un número/inidce.</li>
+        <li><strong>Índice:</strong> posición en el arreglo donde se guarda el valor.</li>
+        <li><strong>Colisiones:</strong> cuando dos claves mapean al mismo índice.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>¿Por qué son eficientes?</h2>
+      <p>En promedio las operaciones básicas (insertar, buscar, eliminar) son O(1), siempre que la función hash y la carga (load factor) estén controladas.</p>
+    </section>
+
+    <section>
+      <h2>Ejemplo visual</h2>
+      <div class="svg-wrap">
+        <svg width="100%" height="140" viewBox="0 0 600 140" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <style>text{font-family:Segoe UI,Arial;fill:#0b2b4a;font-size:12px}</style>
+          <rect x="10" y="10" width="160" height="40" fill="#dbeffd" stroke="#aac" rx="6"/>
+          <text x="20" y="35">Función hash(key)</text>
+          <path d="M170 30 L260 30" stroke="#2b6cb0" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+              <path d="M0 0 L10 5 L0 10 z" fill="#2b6cb0" />
+            </marker>
+          </defs>
+          <!-- arreglo -->
+          <g transform="translate(270,0)">
+            <rect x="0" y="10" width="60" height="30" fill="#fff" stroke="#cbd5e1"/>
+            <rect x="62" y="10" width="60" height="30" fill="#fff" stroke="#cbd5e1"/>
+            <rect x="124" y="10" width="60" height="30" fill="#fff" stroke="#cbd5e1"/>
+            <rect x="186" y="10" width="60" height="30" fill="#fff" stroke="#cbd5e1"/>
+            <text x="10" y="70">Índice 0</text>
+            <text x="72" y="70">Índice 1</text>
+            <text x="134" y="70">Índice 2</text>
+            <text x="196" y="70">Índice 3</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <h2>Fragmento de ejemplo (pseudocódigo)</h2>
+      <pre><code>// put(key,value)
+index = hash(key) % capacity
+array[index] = value  // si no hay colisión
+      </code></pre>
+    </section>
+  </main>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>
