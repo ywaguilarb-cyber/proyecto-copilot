@@ -17,35 +17,35 @@
   </header>
   <main class="container">
     <section>
-      <h2>Operación: Insertar (put)</h2>
-      <p>Paso básico: calcular hash, obtener índice y almacenar allí (o en la estructura de colisión correspondiente).</p>
-      <pre><code>// put pseudo (chaining)
-index = hash(key) % capacity
-if buckets[index] contains key: update value
-else: buckets[index].append((key,value))
+      <h2>Insertar (put)</h2>
+      <p>Calcular índice con la función hash y almacenar en el bucket o en la celda resultante según la técnica.</p>
+      <pre><code>// put (chaining)
+idx = hash(key) % capacity
+if key in buckets[idx]: update value
+else: buckets[idx].append((key,value))
       </code></pre>
     </section>
 
     <section>
-      <h2>Operación: Buscar (get)</h2>
-      <pre><code>// get pseudo (chaining)
-index = hash(key) % capacity
-for (k,v) in buckets[index]:
+      <h2>Buscar (get)</h2>
+      <pre><code>// get (chaining)
+idx = hash(key) % capacity
+for (k,v) in buckets[idx]:
   if k == key: return v
 return null
       </code></pre>
     </section>
 
     <section>
-      <h2>Operación: Eliminar (delete)</h2>
-      <p>En chaining: quitar el nodo de la lista. En open addressing: marcar la celda como "deleted" (tombstone) para preservar la secuencia de sondeo.</p>
-      <pre><code>// delete pseudo (open addressing)
-index = hash(key) % capacity
-while table[index] not empty:
-  if table[index].key == key:
-    table[index].markDeleted()
+      <h2>Eliminar (delete)</h2>
+      <p>Chaining: eliminar el nodo del bucket. Open addressing: marcar la celda como "deleted" (tombstone).</p>
+      <pre><code>// delete (open addressing)
+idx = hash(key) % capacity
+while table[idx] not empty:
+  if table[idx].key == key:
+    table[idx].markDeleted()
     return
-  index = (index + 1) % capacity
+  idx = (idx + 1) % capacity
       </code></pre>
     </section>
 

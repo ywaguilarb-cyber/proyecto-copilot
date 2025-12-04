@@ -19,19 +19,18 @@
   <main class="container">
     <section>
       <h2>¿Qué es una Tabla Hash?</h2>
-      <p>Una tabla hash (hash table) es una estructura de datos que asocia claves (keys) a valores (values) usando una <strong>función hash</strong> que mapea la clave a un índice del arreglo subyacente.</p>
+      <p>Una tabla hash asocia claves a valores mediante una función hash que produce un índice en un arreglo. Es la base para búsquedas rápidas.</p>
       <ul>
-        <li><strong>Clave (key):</strong> identificador único.</li>
-        <li><strong>Valor (value):</strong> datos asociados a la clave.</li>
-        <li><strong>Función hash:</strong> transforma la clave en un número/inidce.</li>
-        <li><strong>Índice:</strong> posición en el arreglo donde se guarda el valor.</li>
-        <li><strong>Colisiones:</strong> cuando dos claves mapean al mismo índice.</li>
+        <li><strong>Clave:</strong> identificador.</li>
+        <li><strong>Valor:</strong> datos asociados.</li>
+        <li><strong>Función hash:</strong> mapea clave → índice.</li>
+        <li><strong>Colisión:</strong> dos claves con mismo índice.</li>
       </ul>
     </section>
 
     <section>
-      <h2>¿Por qué son eficientes?</h2>
-      <p>En promedio las operaciones básicas (insertar, buscar, eliminar) son O(1), siempre que la función hash y la carga (load factor) estén controladas.</p>
+      <h2>Rendimiento</h2>
+      <p>Operaciones promedio: O(1) para insertar, buscar y eliminar cuando la carga y la función hash son adecuadas.</p>
     </section>
 
     <section>
